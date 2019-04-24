@@ -4,7 +4,9 @@ require_relative './config/environment'
 #end
 
 use Rack::MethodOverride
-# use OtherController1
-# use OtherController2
-# use OtherController3
+use UsersController
+use DevicesController
+use ComponentsController
+use CategoriesController
+use TypesController
 run ApplicationController
