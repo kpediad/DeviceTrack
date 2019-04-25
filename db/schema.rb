@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_192059) do
 
   create_table "types", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

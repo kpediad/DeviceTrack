@@ -17,10 +17,9 @@ class TypesController < ApplicationController
       flash[:message] = "You need to log in first!"
       redirect_home
     end
-
   end
 
-  post '/types/' do
+  post '/types' do
 
   end
 
