@@ -17,13 +17,17 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def redirect_home
+      redirect '/'
+    end
   end
 
   get '/' do
     if !logged_in?
       erb :index, :layout => :'not_logged_in_layout' #=> Log In Page
     else
-      erb :index
+      redirect '/devices'
     end
   end
 
