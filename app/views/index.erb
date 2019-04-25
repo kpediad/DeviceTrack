@@ -1,0 +1,45 @@
+
+  <div class="inner-bg">
+      <div class="container">
+
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text">
+                <h1 style="margin-top: -60px"><span class="fa fa-laptop"></span> DeviceTrack</h1>
+                <div class="description">
+                  <p>
+                    Track all your devices with all their hardware component configurations.
+                  </p>
+                </div> <!-- end description  -->
+            </div> <!-- end col-sm-8 -->
+          </div> <!-- end row -->
+
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+
+                  <div class="form-box">
+                      <div class="form-top">
+                          <h3 style="color: #fff; text-align: center;">Login or Sign Up</h3>
+                            <% if flash.has?(:message) %>
+                              <p style="text-align: center; color:#f0ad4e;"><%= flash[:message] %> </p>
+                            <% end %>
+                      </div>
+
+                    <div class="form-bottom">
+                      <form role="form" method="post" >
+                        <div class="form-group">
+                          <label class="sr-only" for="form-username">Username</label>
+                          <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username">
+                        </div>
+                        <div class="form-group">
+                          <label class="sr-only" for="password">Password</label>
+                          <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
+                        </div>
+                          <button type="submit" formaction="/login" class="btn">Log In</button>
+                          <h4 style="-webkit-font-smoothing: antialiased !important; color: white; text-align: center;">Or</h4>
+                          <button type="submit" formaction="/signup" class="btn btn-success">Sign Up</button>
+                      </form>
+                    </div>
+                </div>
+              </div>
+      </div>
+  </div>

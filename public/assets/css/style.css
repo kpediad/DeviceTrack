@@ -142,11 +142,18 @@ tr.info h3 {
 .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
+  color: #fff;
 	background: #444;
 	background: rgba(0, 0, 0, 0.35);
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
-	text-align: left;
+	text-align: center;
 }
+
+.form-top h3 { margin-top: 0; color: #fff; }
+.form-top p { opacity: 0.8; color: #fff; }
+
+#form-top-h3 { color: #fff; text-align: center; }
+#form-top-flash {text-align: center;}
 
 .form-top-left {
 	float: left;
@@ -154,8 +161,7 @@ tr.info h3 {
 	padding-top: 25px;
 }
 
-.form-top-left h3 { margin-top: 0; color: #fff; }
-.form-top-left p { opacity: 0.8; color: #fff; }
+
 
 .form-top-right {
 	float: left;
