@@ -80,17 +80,27 @@ class DevicesController < ApplicationController
     if logged_in? then
       if !params[:name].empty? then
         if !params[:type_id].empty? then
-          #params[:user_id] = current_user.id
-          Device.find(params[:id]).update(params.except(:id, :type, :_method))
-          flash[:message] = "Device updated successfully!"
-          redirect_home
+          device = Device.find(params[:id])
+          if current_user.devices.include?(device) then
+            device.update(params.except(:id, :type, :_method))
+            flash[:message] = "Device updated successfully!"
+            redirect_home
+          else
+            flash[:message] = "You cannot edit this device!"
+            redirect_home
+          end
         else
           if !params[:type][:name].empty? then
-            params[:type_id] = Type.create(params[:type]).id
-            #params[:user_id] = current_user.id
-            Device.find(params[:id]).update(params.except(:id, :type, :_method))
-            flash[:message] = "Device Updated and New Device Type created successfully!"
-            redirect_home
+            device = Device.find(params[:id])
+            if current_user.devices.include?(device) then
+              params[:type_id] = Type.create(params[:type]).id
+              device.update(params.except(:id, :type, :_method))
+              flash[:message] = "Device Updated and New Device Type created successfully!"
+              redirect_home
+            else
+              flash[:message] = "You cannot edit this device!"
+              redirect_home
+            end
           else
             flash[:message] = "Please specify a device type!"
             redirect "/devices/#{params[:id]}/edit"
@@ -104,6 +114,21 @@ class DevicesController < ApplicationController
       flash[:message] = "You need to log in first!"
       redirect_home
     end
+  end
+
+  delete '/devices/:id/delete' do
+    if logged_in? then
+      device = Device.find(params[:id])
+      if current_user.devices.include?(device) then
+        device.delete
+        flash[:message] = "Device deleted successfully!"
+      else
+        flash[:message] = "You cannot delete this device!"
+      end
+    else
+      flash[:message] = "You need to log in first!"
+    end
+    redirect_home
   end
 
 end

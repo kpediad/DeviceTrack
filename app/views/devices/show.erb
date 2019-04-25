@@ -12,7 +12,7 @@
     </div> <!-- end jumbotron -->
   </div> <!-- end row -->
   <div class="row">
-    <form action="/expenses/<%=@device.id%>/delete" method="post">
+    <form action="/devices/<%=@device.id%>/delete" method="post">
         <input type="hidden" id="hidden" name="_method" value="delete">
       <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete This Device</button>
     </form>
