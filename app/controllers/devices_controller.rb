@@ -62,4 +62,19 @@ class DevicesController < ApplicationController
     end
   end
 
+  get '/devices/:id/edit' do
+    if logged_in? then
+      @device = Device.find(params[:id])
+      if current_user.devices.include?(@device) then
+        @types = Type.all
+        erb :'devices/edit'
+      else
+        flash[:message] = "You cannot edit this device!"
+        redirect_home
+      end
+    else
+      redirect_home
+    end
+  end
+
 end
