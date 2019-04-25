@@ -48,4 +48,18 @@ class DevicesController < ApplicationController
     end
   end
 
+  get '/devices/:id' do
+    if logged_in? then
+      @device = Device.find(params[:id])
+      if current_user.devices.include?(@device) then
+        erb :'devices/show'
+      else
+        flash[:message] = "You cannot view this device!"
+        redirect_home
+      end
+    else
+      redirect_home
+    end
+  end
+
 end
