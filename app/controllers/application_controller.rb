@@ -21,6 +21,11 @@ class ApplicationController < Sinatra::Base
     def redirect_home
       redirect '/'
     end
+
+    def redirect_types_home
+      redirect '/types'
+    end
+    
   end
 
   get '/' do
