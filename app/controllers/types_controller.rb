@@ -1,5 +1,14 @@
 class TypesController < ApplicationController
 
+  get '/types' do
+    if logged_in? then
+      erb :'types/index'
+    else
+      flash[:message] = "You need to log in first!"
+      redirect_home
+    end
+  end
+
   get '/types/new' do
     if logged_in? then
       erb :'types/new'
