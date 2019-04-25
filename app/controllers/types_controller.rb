@@ -32,16 +32,21 @@ class TypesController < ApplicationController
     if logged_in? then
       if !params[:name].empty? then
         params[:user_id] = current_user.id
-        Type.create(params)
-        flash[:message] = "Device Type created successfully!"
-        redirect_types_home
+        if !Type.find_by(params) then
+          Type.create(params)
+          flash[:message] = "Device Type created successfully!"
+          redirect_types_home
+        else
+          flash[:message] = "A type with the same name already exists!"
+          redirect_types_home
+        end
       else
         flash[:message] = "Please provide a type name!"
         redirect '/types/new'
       end
     else
-      flash[:message] = "Device Type created successfully!"
-      redirect_types_home
+      flash[:message] = "You need to log in first!"
+      redirect_home
     end
   end
 
