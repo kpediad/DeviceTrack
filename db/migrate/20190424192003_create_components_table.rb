@@ -4,6 +4,7 @@ class CreateComponentsTable < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :description
       t.integer :category_id
+      t.integer :device_id
     end
   end
 end

@@ -20,12 +20,14 @@ ActiveRecord::Schema.define(version: 2019_04_24_192059) do
     t.string "name"
     t.string "description"
     t.integer "category_id"
+    t.integer "device_id"
   end
 
   create_table "devices", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "type_id"
+    t.integer "user_id"
   end
 
   create_table "types", force: :cascade do |t|

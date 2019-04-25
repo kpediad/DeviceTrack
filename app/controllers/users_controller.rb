@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] && !params[:username].empty? then
-      if User.exists? then
+      if User.exists?(params[:username]) then
         flash[:message] = "Username already in use. Please choose another."
       else
         if params[:password] && !params[:password].empty? then
@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     else
       flash[:message] = "Please provide a username!"
     end
+    redirect_home
+  end
+
+  get '/logout' do
+    session.clear
     redirect_home
   end
 end
