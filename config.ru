@@ -6,7 +6,5 @@ require_relative './config/environment'
 use Rack::MethodOverride
 use UsersController
 use DevicesController
-use ComponentsController
-use CategoriesController
 use TypesController
 run ApplicationController

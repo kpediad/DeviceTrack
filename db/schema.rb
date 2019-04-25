@@ -12,17 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_04_24_192059) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "components", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "category_id"
-    t.integer "device_id"
-  end
-
   create_table "devices", force: :cascade do |t|
     t.string "name"
     t.string "description"
