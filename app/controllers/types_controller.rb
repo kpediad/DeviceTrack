@@ -1,7 +1,11 @@
 class TypesController < ApplicationController
 
   get '/types/new' do
-
+    if logged_in? then
+      erb :'types/new'
+    else
+      redirect_home
+    end
   end
 
   get '/types/:id' do
@@ -21,7 +25,7 @@ class TypesController < ApplicationController
   end
 
   delete '/types/:id/delete' do
-    
+
   end
 
 end
