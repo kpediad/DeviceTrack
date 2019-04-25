@@ -27,7 +27,7 @@ class DevicesController < ApplicationController
           redirect_home
         else
           if !params[:type][:name].empty? then
-            params[:type][:user_id] current_user.id
+            params[:type][:user_id] = current_user.id
             params[:type_id] = Type.find_or_create(params[:type]).id
             params[:user_id] = current_user.id
             Device.create(params.except(:type))
