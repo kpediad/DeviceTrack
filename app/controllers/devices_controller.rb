@@ -10,7 +10,7 @@ class DevicesController < ApplicationController
 
   get '/devices/new' do
     if logged_in? then
-      @types = Type.all
+      @types = current_user.types
       erb :'devices/new'
     else
       redirect_home
@@ -27,6 +27,7 @@ class DevicesController < ApplicationController
           redirect_home
         else
           if !params[:type][:name].empty? then
+            params[:type][:user_id] current_user.id
             params[:type_id] = Type.create(params[:type]).id
             params[:user_id] = current_user.id
             Device.create(params.except(:type))
@@ -65,7 +66,7 @@ class DevicesController < ApplicationController
     if logged_in? then
       @device = Device.find(params[:id])
       if current_user.devices.include?(@device) then
-        @types = Type.all
+        @types = current_user.types
         erb :'devices/edit'
       else
         flash[:message] = "You cannot edit this device!"
@@ -93,6 +94,7 @@ class DevicesController < ApplicationController
           if !params[:type][:name].empty? then
             device = Device.find(params[:id])
             if current_user.devices.include?(device) then
+              params[:type][:user_id] == current_user.id
               params[:type_id] = Type.create(params[:type]).id
               device.update(params.except(:id, :type, :_method))
               flash[:message] = "Device Updated and New Device Type created successfully!"
