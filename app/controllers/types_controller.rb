@@ -20,7 +20,20 @@ class TypesController < ApplicationController
   end
 
   post '/types' do
-
+    if logged_in? then
+      if !params[:name].empty? then
+        params[:user_id] = current_user.id
+        Type.create(params)
+        flash[:message] = "Device Type created successfully!"
+        redirect_types_home
+      else
+        flash[:message] = "Please provide a type name!"
+        redirect '/types/new'
+      end
+    else
+      flash[:message] = "Device Type created successfully!"
+      redirect_types_home
+    end
   end
 
   get '/types/:id/edit' do
