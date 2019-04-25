@@ -11,5 +11,6 @@ class Type < ActiveRecord::Base
     if !type then
       type = Type.create(args)
     end
+    return type
   end
 end
