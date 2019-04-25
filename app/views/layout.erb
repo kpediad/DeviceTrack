@@ -37,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-list-alt"></span> Device Track </a>
+              <a class="navbar-brand" href="/"><span class="fa fa-laptop"></span> DeviceTrack</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,15 +48,11 @@
 
               <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="/categories"><span class="glyphicon glyphicon-tasks"></span> Categories </a></li>
-                <li><a href="/"><span class="glyphicon glyphicon-th-list"></span> View Expenses </a></li>
-                <li><a href="/expenses/new"><span class="glyphicon glyphicon-edit"></span> Add New Expense</a></li>
+                <li><a href="/devices/new"><span class="fa fa-plus-square"></span> Add New Device </a></li>
+                <li><a href="/components"><span class="fa fa-cogs"></span> View All Components </a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Account <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <%=current_user.username%> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/users/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-cog"></span> Edit User Info</a></li>
-
-                    <li role="separator" class="divider"></li>
                     <li><a href="/logout"><span class="glyphicon glyphicon-off"></span> Log out</a></li>
                   </ul>
                 </li>
@@ -72,11 +68,6 @@
     <footer>
       <div class="container">
         <div class="row">
-
-          <div class="col-sm-8 col-sm-offset-2">
-            <div class="footer-border"></div>
-          </div>
-
         </div>
       </div>
     </footer>
