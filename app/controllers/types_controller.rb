@@ -57,6 +57,8 @@ class TypesController < ApplicationController
       if current_user.types.includes?(type) then
         if !params[:name].empty? then
           type.update(name: params[:name])
+          flash[:message] = "Type updated successfully!"
+          redirect_types_home
         else
           flash[:message] = "Please provide a type name!"
           redirect "/types/#{type.id}/edit"
@@ -72,7 +74,20 @@ class TypesController < ApplicationController
   end
 
   delete '/types/:id/delete' do
-
+    if logged_in? then
+      type = Type.find(params[:id])
+      if current_user.types.includes?(type) then
+        type.delete
+        flash[:message] = "Type deleted successfully!"
+        redirect_types_home
+      else
+        flash[:message] = "You cannot delete this type!"
+        redirect_types_home
+      end
+    else
+      flash[:message] = "You need to log in first!"
+      redirect_home
+    end
   end
 
 end
