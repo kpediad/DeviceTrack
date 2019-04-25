@@ -18,7 +18,6 @@ class DevicesController < ApplicationController
   end
 
   post '/devices' do
-    #raise params.inspect
     if logged_in? then
       if !params[:name].empty? then
         if !params[:type_id].empty? then
@@ -73,6 +72,36 @@ class DevicesController < ApplicationController
         redirect_home
       end
     else
+      redirect_home
+    end
+  end
+
+  patch '/devices/:id' do
+    if logged_in? then
+      if !params[:name].empty? then
+        if !params[:type_id].empty? then
+          #params[:user_id] = current_user.id
+          Device.find(params[:id]).update(params.except(:id, :type, :_method))
+          flash[:message] = "Device updated successfully!"
+          redirect_home
+        else
+          if !params[:type][:name].empty? then
+            params[:type_id] = Type.create(params[:type]).id
+            #params[:user_id] = current_user.id
+            Device.find(params[:id]).update(params.except(:id, :type, :_method))
+            flash[:message] = "Device Updated and New Device Type created successfully!"
+            redirect_home
+          else
+            flash[:message] = "Please specify a device type!"
+            redirect "/devices/#{params[:id]}/edit"
+          end
+        end
+      else
+        flash[:message] = "Please specify a device name!"
+        redirect "/devices/#{params[:id]}/edit"
+      end
+    else
+      flash[:message] = "You need to log in first!"
       redirect_home
     end
   end
