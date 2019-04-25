@@ -52,7 +52,23 @@ class TypesController < ApplicationController
   end
 
   patch '/types/:id' do
-
+    if logged_in? then
+      type = Type.find(params[:id])
+      if current_user.types.includes?(type) then
+        if !params[:name].empty? then
+          type.update(name: params[:name])
+        else
+          flash[:message] = "Please provide a type name!"
+          redirect "/types/#{type.id}/edit"
+        end
+      else
+        flash[:message] = "You cannot edit this type!"
+        redirect_types_home
+      end
+    else
+      flash[:message] = "You need to log in first!"
+      redirect_home
+    end
   end
 
   delete '/types/:id/delete' do
