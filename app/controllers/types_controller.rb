@@ -37,7 +37,18 @@ class TypesController < ApplicationController
   end
 
   get '/types/:id/edit' do
-
+    if logged_in? then
+      @type = Type.find(params[:id])
+      if current_user.types.includes?(@type) then
+        erb :'types/edit'
+      else
+        flash[:message] = "You cannot edit this type!"
+        redirect_types_home
+      end
+    else
+      flash[:message] = "You need to log in first!"
+      redirect_home
+    end
   end
 
   patch '/types/:id' do
