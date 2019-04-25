@@ -28,10 +28,10 @@ class DevicesController < ApplicationController
         else
           if !params[:type][:name].empty? then
             params[:type][:user_id] current_user.id
-            params[:type_id] = Type.create(params[:type]).id
+            params[:type_id] = Type.find_or_create(params[:type]).id
             params[:user_id] = current_user.id
             Device.create(params.except(:type))
-            flash[:message] = "Device and Device Type created successfully!"
+            flash[:message] = "Device created successfully!"
             redirect_home
           else
             flash[:message] = "Please specify a device type!"
@@ -94,10 +94,10 @@ class DevicesController < ApplicationController
           if !params[:type][:name].empty? then
             device = Device.find(params[:id])
             if current_user.devices.include?(device) then
-              params[:type][:user_id] == current_user.id
-              params[:type_id] = Type.create(params[:type]).id
+              params[:type][:user_id] = current_user.id
+              params[:type_id] = Type.find_or_create(params[:type]).id
               device.update(params.except(:id, :type, :_method))
-              flash[:message] = "Device Updated and New Device Type created successfully!"
+              flash[:message] = "Device Updated successfully!"
               redirect_home
             else
               flash[:message] = "You cannot edit this device!"
