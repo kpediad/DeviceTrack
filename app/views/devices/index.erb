@@ -9,13 +9,17 @@
       <% end %>
       <table class="table table-hover table-striped" >
         <tr class="info">
-          <th style="text-align:center;"><h3>Device Type Name</h3></th>
-          <th style="text-align:center;"><h3>Edit Device Type</h3></th>
+          <th style="text-align:center;"><h3>Device Name</h3></th>
+          <th style="text-align:center;"><h3>Type</h3></th>
+          <th style="text-align:center;"><h3>Description</h3></th>
+          <th style="text-align:center;"><h3>Edit Device</h3></th>
         </tr>
-        <% current_user.types.each do |type| %>
+        <% current_user.devices.each do |device| %>
           <tr style="text-align:center;">
-            <td><a href="/types/<%=type.id%>"><%=type.name%></a></td>
-            <td><a href="/types/<%=type.id%>/edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="/devices/<%=device.id%>"><%=device.name%></a></td>
+            <td><a href="/types/<%=device.type.id%>"><%=device.type.name%></a></td>
+            <td><%=device.description%></td>
+            <td><a href="/devices/<%=device.id%>/edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
           </tr>
         <% end %>
       </table>
