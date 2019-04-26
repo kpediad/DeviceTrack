@@ -1,0 +1,29 @@
+<div class="inner-bg">
+    <div class="container">
+
+            <div class="row" style="margin-top: -20px">
+              <div class="col-sm-6 col-sm-offset-3">
+
+                <div class="form-box">
+                    <div class="form-top">
+                        <h3 style="color: #fff; text-align: center;">Add a New Device Type</h3>
+                        <% if flash.has?(:message) %>
+                          <p style="text-align: center; color:#f0ad4e;"><%= flash[:message] %> </p>
+                        <% end %>
+                    </div>
+
+                  <div class="form-bottom">
+                    <form  action="/types" method="post" >
+
+                      <div class="form-group">
+                        <label class="sr-only" for="form-amount">Type Name</label>
+                        <input type="text" name="name" placeholder="Type Name..." class="form-amount form-control" id="form-amount" required>
+                      </div>
+                        <button type="submit" class="btn btn-success">Add Device Type</button>
+                    </form>
+
+                  </div>
+              </div>
+            </div>
+    </div>
+</div>
