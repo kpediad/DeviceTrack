@@ -149,11 +149,8 @@ tr.info h3 {
 	text-align: center;
 }
 
-.form-top h3 { margin-top: 0; color: #fff; }
-.form-top p { opacity: 0.8; color: #fff; }
-
-#form-top-h3 { color: #fff; text-align: center; }
-#form-top-flash {text-align: center;}
+.form-top h3 { color: #fff; }
+.form-top p { color: #fff; }
 
 .form-top-left {
 	float: left;
