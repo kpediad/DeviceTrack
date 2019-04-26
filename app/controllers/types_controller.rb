@@ -20,8 +20,13 @@ class TypesController < ApplicationController
 
   get '/types/:id' do
     if logged_in? then
-      @devices = Device.find_by(user_id: current_user.id, type_id: params[:id])
-      erb :'types/show'
+      @type = Type.find(params[:id])
+      if current_user.types.include?(@type) then
+        erb :'types/show'
+      else
+        flash[:message] = "You cannot view this device type!"
+        redirect_types_home
+      end
     else
       flash[:message] = "You need to log in first!"
       redirect_home
@@ -53,7 +58,7 @@ class TypesController < ApplicationController
   get '/types/:id/edit' do
     if logged_in? then
       @type = Type.find(params[:id])
-      if current_user.types.includes?(@type) then
+      if current_user.types.include?(@type) then
         erb :'types/edit'
       else
         flash[:message] = "You cannot edit this type!"
@@ -68,7 +73,7 @@ class TypesController < ApplicationController
   patch '/types/:id' do
     if logged_in? then
       type = Type.find(params[:id])
-      if current_user.types.includes?(type) then
+      if current_user.types.include?(type) then
         if !params[:name].empty? then
           type.update(name: params[:name])
           flash[:message] = "Type updated successfully!"
@@ -90,7 +95,7 @@ class TypesController < ApplicationController
   delete '/types/:id/delete' do
     if logged_in? then
       type = Type.find(params[:id])
-      if current_user.types.includes?(type) then
+      if current_user.types.include?(type) then
         type.delete
         flash[:message] = "Type deleted successfully!"
         redirect_types_home
