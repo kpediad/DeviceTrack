@@ -8,13 +8,18 @@
       <p><%=@device.description%></p>
       <h3>Type</h3>
       <p><%=@device.type.name%></p>
-      <a href="/devices/<%=@device.id%>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Device</a>
+      <hr>
+      <table style="width:100%;">
+        <tr>
+          <td style="text-align: left;"><a href="/devices/<%=@device.id%>/edit"><button class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit Device</button></a></td>
+          <td style="text-align: right;">
+            <form action="/devices/<%=@device.id%>/delete" method="post">
+              <input type="hidden" id="hidden" name="_method" value="delete">
+              <button type="submit" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete Device</button>
+            </form>
+          </td>
+        </tr>
+      </table>
     </div> <!-- end jumbotron -->
-  </div> <!-- end row -->
-  <div class="row">
-    <form action="/devices/<%=@device.id%>/delete" method="post">
-        <input type="hidden" id="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete This Device</button>
-    </form>
   </div> <!-- end row -->
 </div> <!-- end container -->
