@@ -6,7 +6,7 @@
 }
 
 
-select[name="category_name"],
+select[name="type_id"],
 input[type="text"],
 input[type="password"],
 input[type="email"],

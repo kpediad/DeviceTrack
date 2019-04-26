@@ -11,11 +11,17 @@
         <tr class="info">
           <th style="text-align:center;"><h3>Device Type Name</h3></th>
           <th style="text-align:center;"><h3>Edit Device Type</h3></th>
+          <th style="text-align:center;"><h3>Delete Device Type</h3></th>
         </tr>
         <% current_user.types.each do |type| %>
           <tr style="text-align:center;">
             <td><a href="/types/<%=type.id%>"><%=type.name%></a></td>
-            <td><a href="/types/<%=type.id%>/edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="/types/<%=type.id%>/edit"><button class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+            <td><form class="" action="/types/<%=type.id%>/delete" method="post">
+                  <input type="hidden" id="hidden" name="_method" value="delete">
+                  <button type="submit" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+            </td>
           </tr>
         <% end %>
       </table>

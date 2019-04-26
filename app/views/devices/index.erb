@@ -13,13 +13,23 @@
           <th style="text-align:center;"><h3>Type</h3></th>
           <th style="text-align:center;"><h3>Description</h3></th>
           <th style="text-align:center;"><h3>Edit Device</h3></th>
+          <th style="text-align:center;"><h3>Delete Device</h3></th>
         </tr>
         <% current_user.devices.each do |device| %>
           <tr style="text-align:center;">
             <td><a href="/devices/<%=device.id%>"><%=device.name%></a></td>
-            <td><a href="/types/<%=device.type.id%>"><%=device.type.name%></a></td>
+            <%if device.type then%>
+              <td><a href="/types/<%=device.type.id%>"><%=device.type.name%></a></td>
+            <%else%>
+              <td>N/A</td>
+            <%end%>
             <td><%=device.description%></td>
-            <td><a href="/devices/<%=device.id%>/edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="/devices/<%=device.id%>/edit"><button class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+            <td><form action="/devices/<%=device.id%>/delete" method="post">
+                  <input type="hidden" id="hidden" name="_method" value="delete">
+                  <button type="submit" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+            </td>
           </tr>
         <% end %>
       </table>
