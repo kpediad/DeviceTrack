@@ -20,10 +20,10 @@
                       </div>
                       <div class="form-group">
                         <select name="type_id" class="form-control">
+                              <option value="" <%='selected' if !@device.type%>>Select Existing Device Type...</option>
                               <% @types.each do |type| %>
-                                <option name="type[name]" value="<%= type.id %>" <%='selected' if @device.type.id == type.id%>><%= type.name %></option>
+                                <option name="type[name]" value="<%= type.id %>" <%='selected' if @device.type && @device.type.id == type.id%>><%= type.name %></option>
                               <%end%>
-                              <option value="">Create New Type</option>
                         </select>
                       </div>
                       <div class="form-group" style="">
