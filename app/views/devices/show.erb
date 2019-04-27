@@ -7,7 +7,11 @@
       <h3>Description</h3>
       <p><%=@device.description%></p>
       <h3>Type</h3>
-      <p><%=@device.type.name%></p>
+      <%if @device.type then%>
+        <p><%=@device.type.name%></p>
+      <%else%>
+        <p>N/A</p>
+      <%end%>
       <hr>
       <table style="width:100%;">
         <tr>
