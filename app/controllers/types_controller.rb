@@ -75,9 +75,14 @@ class TypesController < ApplicationController
       type = Type.find(params[:id])
       if current_user.types.include?(type) then
         if !params[:name].empty? then
-          type.update(name: params[:name])
-          flash[:message] = "Type updated successfully!"
-          redirect_types_home
+          if !Type.exists?(params[:name]) then
+            type.update(name: params[:name])
+            flash[:message] = "Type updated successfully!"
+            redirect_types_home
+          else
+            flash[:message] = "A type with the same name already exists!"
+            redirect "/types/#{type.id}/edit"
+          end
         else
           flash[:message] = "Please provide a type name!"
           redirect "/types/#{type.id}/edit"
