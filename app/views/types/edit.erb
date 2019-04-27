@@ -10,13 +10,15 @@
                         <% end %>
                     </div>
                   <div class="form-bottom">
-                    <form  action="/types" method="post" >
+                    <form  action="/types/<%=@type.id%>" method="post">
                       <div class="form-group">
+                        <input type="hidden" id="hidden" name="_method" value="patch">
                         <input type="text" name="name" placeholder="Type Name..." class="form-control" value="<%=@type.name%>" required>
                       </div>
-                        <button type="submit" class="btn btn-success">Edit Device Type</button>
+                      <button type="submit" class="btn btn-success">Edit Device Type</button>
                     </form>
                   </div>
+                </div>
               </div>
             </div>
     </div>
